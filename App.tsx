@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useFonts, Karla_400Regular, Karla_700Bold } from '@expo-google-fonts/karla';
 
 import { THEME } from './src/theme';
@@ -11,10 +12,12 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      <StatusBar style="light" translucent backgroundColor='transparent'/>
-      {!fontsLoaded ? <Loading /> : (
-        <Routes />
-      )}
+      <GestureHandlerRootView style={{flex: 1}}>
+        <StatusBar style="light" translucent backgroundColor='transparent'/>
+        {!fontsLoaded ? <Loading /> : (
+          <Routes />
+        )}
+      </GestureHandlerRootView> 
     </NativeBaseProvider>
   );
 }

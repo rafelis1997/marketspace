@@ -4,8 +4,9 @@ import { IconContext, MagnifyingGlass, Sliders } from 'phosphor-react-native'
 
 
 type Props = IInputProps & {
+  openFilterModal: () => void;
 }
-export function SearchBar({...rest }: Props) {
+export function SearchBar({ openFilterModal ,...rest }: Props) {
   const { colors } = useTheme();
 
   return (
@@ -37,7 +38,7 @@ export function SearchBar({...rest }: Props) {
             <Pressable pr={3} borderRightColor="gray.300" borderRightWidth={1}>
               <MagnifyingGlass />
             </Pressable>
-            <Pressable mr={4} ml={3}>
+            <Pressable mr={4} ml={3} onPress={openFilterModal}>
               <Sliders />
             </Pressable>
           </IconContext.Provider>
