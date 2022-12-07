@@ -1,7 +1,7 @@
-import { IPressableProps, Pressable, Text, useTheme, View } from "native-base";
+import { IPressableProps, Pressable, Text, useTheme, ITextProps } from "native-base";
 import { X, XCircle } from "phosphor-react-native";
 
-type Props = IPressableProps & {
+type Props = IPressableProps & ITextProps & {
   isChecked: boolean;
   title: string;
 }
@@ -22,7 +22,7 @@ export function Tag({isChecked, title, ...rest}: Props) {
       flexDirection="row"
       rounded="full"
     >
-      <Text fontWeight="bold" color={isChecked ? "gray.100" : "gray.500"} fontSize="sm" pr={2} >{title}</Text>
+      <Text fontWeight="bold" color={isChecked ? "gray.100" : "gray.500"} fontSize="sm" pr={2} {...rest}>{title}</Text>
       {isChecked && (
         <XCircle size={16} weight="fill" color={colors.gray[200]}/>
       )}

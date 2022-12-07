@@ -1,13 +1,15 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Dimensions, TouchableOpacity, StyleSheet } from "react-native";
-import { Box, Center, FlatList, Heading, HStack, Pressable, Text, useTheme, View, VStack } from "native-base";
-import { ArrowRight, Tag, X } from "phosphor-react-native";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Dimensions, TouchableOpacity} from "react-native";
+import { Box, Center, FlatList, HStack, Text, useTheme, View, VStack } from "native-base";
+import { ArrowRight, Tag } from "phosphor-react-native";
 import { BottomSheetModalProvider, BottomSheetModal } from '@gorhom/bottom-sheet'
 
 import { HomeHeader } from "@components/HomeHeader";
 import { SearchBar } from "@components/SearchBar";
 import { ProductCard } from "@components/ProductCard";
 import { FilterModal } from "@components/FilterModal";
+import { useNavigation } from "@react-navigation/native";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
 
 
 const items = ['1','2','3','4','5']
@@ -16,6 +18,8 @@ export function Home() {
   const [dimensions, setDimensions] = useState(window);
 
   const bottomSheetModalRef = useRef<BottomSheetModal>(null)
+
+  const navigator = useNavigation<AppNavigatorRoutesProps>();
   
   const { width } = dimensions;
   const { colors } = useTheme();
@@ -25,6 +29,10 @@ export function Home() {
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);
+
+  function handleGoToProduct() {
+    navigator.navigate('product');
+  }
 
   useEffect(() => {
     const subscription = Dimensions.addEventListener(
@@ -39,7 +47,7 @@ export function Home() {
 
   return (
     <BottomSheetModalProvider>
-      <View flex={1} bg="gray.200" pt={16} px={6} justifyContent="flex-start">
+      <View flex={1} bg="gray.200" pt={10} px={6} justifyContent="flex-start">
         
         <FilterModal ref={bottomSheetModalRef}/>
 
@@ -103,7 +111,7 @@ export function Home() {
             marginBottom: 28,
           }}
           renderItem={({item})=> (
-            <ProductCard itemWidth={itemsListWidth}/>
+            <ProductCard itemWidth={itemsListWidth} onPress={handleGoToProduct}/>
           )}
           _contentContainerStyle={{
             pb: 8,

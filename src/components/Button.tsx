@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Button as NativeButton, Text, IButtonProps, HStack, Center } from "native-base";
+import { Button as NativeButton, Text, IButtonProps, HStack, Center, useTheme } from "native-base";
 import { IconContext } from "phosphor-react-native";
 
 type ButtonProps = IButtonProps & {
@@ -9,6 +9,7 @@ type ButtonProps = IButtonProps & {
 }
 
 export function Button({ children, variant = "gray", title, ...rest }: ButtonProps) {
+  const { colors } = useTheme();
   return (
     <NativeButton
       w="full"
@@ -26,7 +27,7 @@ export function Button({ children, variant = "gray", title, ...rest }: ButtonPro
       <Center flexDirection="row">
         <IconContext.Provider
           value={{
-            color: variant === "gray" ? "gray.600" : "gray.100",
+            color: variant === "gray" ? colors.gray[600] : colors.gray[100],
             size: 16,
           }}
         >

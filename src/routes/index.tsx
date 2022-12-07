@@ -10,7 +10,7 @@ export function Routes() {
   theme.colors.background = colors.gray[100];
 
   return (
-    <Box flex={1} bg='gray.100'>
+    <Box flex={1} bg='gray.100' safeArea>
       <NavigationContainer theme={theme}>
         <AppRoutes />
       </NavigationContainer>

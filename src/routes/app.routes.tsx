@@ -1,26 +1,35 @@
 import { createBottomTabNavigator, BottomTabNavigationProp  } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator, NativeStackNavigationProp  } from '@react-navigation/native-stack';
 import { useTheme } from 'native-base';
 
 
 import { Home } from '@screens/Home';
 import { Platform } from 'react-native';
 import { House } from 'phosphor-react-native';
+import { Product } from '@screens/Product';
 
-type AppRoutes = {
+type HomeTabNavigationProps = {
   home: undefined;
 }
 
-export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
+type AppRoutes = {
+  homeTab: undefined;
+  product: undefined;
+}
 
-const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>()
+export type HomeTabNavigatorRoutesProps = BottomTabNavigationProp<HomeTabNavigationProps>;
+export type AppNavigatorRoutesProps = NativeStackNavigationProp<AppRoutes>;
 
-export function AppRoutes() {
+const Tab = createBottomTabNavigator<HomeTabNavigationProps>()
+const Stack = createNativeStackNavigator<AppRoutes>()
+
+function HomeTabNavigation() {
   const { sizes, colors } = useTheme();
 
   const iconSize = sizes[8];
 
   return (
-    <Navigator screenOptions={{ 
+    <Tab.Navigator screenOptions={{ 
       headerShown: false,
       tabBarShowLabel: false,
       tabBarActiveTintColor: colors.gray[700],
@@ -35,7 +44,7 @@ export function AppRoutes() {
         alignItems: 'center',
       }
     }}>
-      <Screen
+      <Tab.Screen
         name='home'
         component={Home}
         options={{
@@ -44,6 +53,21 @@ export function AppRoutes() {
           )
         }}
       />
-    </Navigator>
+    </Tab.Navigator>
   );
+}
+
+export function AppRoutes() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false, animation: 'slide_from_right' }}>
+      <Stack.Screen
+        name='homeTab'
+        component={HomeTabNavigation}
+      />
+      <Stack.Screen
+        name='product'
+        component={Product}
+      />
+    </Stack.Navigator>
+  )
 }

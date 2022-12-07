@@ -1,7 +1,8 @@
 import { useMemo, useCallback, forwardRef, useEffect, useState } from 'react';
-import { BottomSheetFooter, BottomSheetFooterProps, BottomSheetModal, BottomSheetModalProvider, BottomSheetScrollView } from '@gorhom/bottom-sheet'
+import { BottomSheetModal,  BottomSheetScrollView } from '@gorhom/bottom-sheet'
 import { Checkbox, Heading, HStack, Pressable, Switch, Text, useTheme, View, VStack } from 'native-base';
 import { X } from 'phosphor-react-native';
+
 import { useForwardRef } from '@hooks/UseFowardRef';
 import { Tag } from './Tag';
 import { Button } from './Button';
