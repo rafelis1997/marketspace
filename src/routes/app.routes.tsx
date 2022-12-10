@@ -9,6 +9,7 @@ import { House, Tag } from 'phosphor-react-native';
 import { Product } from '@screens/Product';
 import { MyProducts } from '@screens/MyProducts';
 import { CreateProduct } from '@screens/CreateProduct';
+import { PreviewProduct } from '@screens/PreviewProduct';
 
 type HomeTabNavigationProps = {
   home: undefined;
@@ -18,7 +19,9 @@ type HomeTabNavigationProps = {
 
 type AppRoutes = {
   homeTab: undefined;
-  product: undefined;
+  product?: {
+    isOwner: boolean;
+  };
   newProduct: undefined;
 }
 
@@ -81,6 +84,7 @@ export function AppRoutes() {
       <Stack.Screen
         name='product'
         component={Product}
+        initialParams={{ isOwner: false }}
       />
       <Stack.Screen
         name='newProduct'

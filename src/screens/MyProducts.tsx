@@ -21,7 +21,7 @@ export function MyProducts() {
   const itemsListWidth = (width - 72) / 2;
 
   function handleGoToProduct() {
-    navigator.navigate('product');
+    navigator.navigate('product', { isOwner: true });
   }
   function handleNewProduct() {
     navigator.navigate('newProduct');

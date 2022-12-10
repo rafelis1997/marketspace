@@ -72,7 +72,7 @@ export function CreateProduct() {
           <TextArea
             autoCompleteType={false}
             value={textAreaValue}
-            onChange={text => setTextAreaValue(text)}
+            onChange={({target}) => setTextAreaValue(target.v)}
             placeholder="Descrição do produto"
             placeholderTextColor="gray.400"
             fontSize="md"
@@ -194,7 +194,7 @@ export function CreateProduct() {
         </VStack>
       </ScrollView>
 
-      <HStack px={6} safeAreaBottom py={6}>
+      <HStack px={6} safeAreaBottom py={6} bg="gray.100">
         <Button title="Cancelar" mr={3}/>
         <Button title="Avançar" variant="black"/>
       </HStack>

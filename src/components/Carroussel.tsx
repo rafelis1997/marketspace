@@ -59,7 +59,7 @@ export function Carrousel({data}: Carrousel) {
           left={0}
           zIndex={10}
           width="full"
-          height={2}
+          height={1}
           flexDirection="row"
           justifyContent="space-between"
           alignItems="center"
@@ -131,7 +131,7 @@ function PaginationItem({ animValue, index, length, backgroundColor }: Paginatio
         overflow:"hidden",
         marginLeft: 4,
         marginRight: 4,
-        opacity: 0.6,
+        opacity: 0.4,
       }}
       ref={itemRef}
     >
