@@ -98,11 +98,55 @@ export const FilterModal = forwardRef<BottomSheetModal>((props, ref) => {
             <VStack width="full" mb={16} alignItems="flex-start">
               <Text color="gray.600" fontWeight="bold" mb={3}>Meios de pagamento aceitos</Text>
               <Checkbox.Group >
-                <Checkbox value='boleto' colorScheme="blue">Boleto</Checkbox>
-                <Checkbox value='pix' colorScheme="blue">Pix</Checkbox>
-                <Checkbox value='dinheiro' colorScheme="blue">Dinheiro</Checkbox>
-                <Checkbox value='credit-card' colorScheme="blue">Cartão de Crédito</Checkbox>
-                <Checkbox value='deposit' colorScheme="blue">Depósito</Checkbox>
+                <Checkbox 
+                  value='boleto' 
+                  colorScheme="blue" 
+                  borderColor="gray.400" 
+                  borderWidth={1} 
+                  rounded="xs"
+                >
+                  Boleto
+                </Checkbox>
+
+                <Checkbox 
+                  value='pix' 
+                  colorScheme="blue" 
+                  borderColor="gray.400" 
+                  borderWidth={1} 
+                  rounded="xs"
+                >
+                  Pix
+                </Checkbox>
+
+                <Checkbox 
+                  value='dinheiro' 
+                  colorScheme="blue" 
+                  borderColor="gray.400" 
+                  borderWidth={1} 
+                  rounded="xs"
+                >
+                  Dinheiro
+                </Checkbox>
+
+                <Checkbox value
+                  ='credit-card' 
+                  colorScheme="blue" 
+                  borderColor="gray.400" 
+                  borderWidth={1} 
+                  rounded="xs"
+                >
+                  Cartão de Crédito
+                </Checkbox>
+
+                <Checkbox 
+                  value='deposit' 
+                  colorScheme="blue" 
+                  borderColor="gray.400" 
+                  borderWidth={1} 
+                  rounded="xs"
+                >
+                  Depósito
+                </Checkbox>
               </Checkbox.Group>
             </VStack>
 

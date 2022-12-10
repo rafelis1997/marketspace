@@ -5,16 +5,21 @@ import { useTheme } from 'native-base';
 
 import { Home } from '@screens/Home';
 import { Platform } from 'react-native';
-import { House } from 'phosphor-react-native';
+import { House, Tag } from 'phosphor-react-native';
 import { Product } from '@screens/Product';
+import { MyProducts } from '@screens/MyProducts';
+import { CreateProduct } from '@screens/CreateProduct';
 
 type HomeTabNavigationProps = {
   home: undefined;
+  myProducts: undefined;
+  
 }
 
 type AppRoutes = {
   homeTab: undefined;
   product: undefined;
+  newProduct: undefined;
 }
 
 export type HomeTabNavigatorRoutesProps = BottomTabNavigationProp<HomeTabNavigationProps>;
@@ -33,7 +38,7 @@ function HomeTabNavigation() {
       headerShown: false,
       tabBarShowLabel: false,
       tabBarActiveTintColor: colors.gray[700],
-      tabBarInactiveTintColor: colors.gray[200],
+      tabBarInactiveTintColor: colors.gray[300],
       tabBarStyle: {
         backgroundColor: colors.gray[100],
         borderTopWidth: 0,
@@ -53,6 +58,15 @@ function HomeTabNavigation() {
           )
         }}
       />
+      <Tab.Screen
+        name='myProducts'
+        component={MyProducts}
+        options={{
+          tabBarIcon: ({color}) => (
+            <Tag weight='bold' size={iconSize} color={color}/>
+          )
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -67,6 +81,10 @@ export function AppRoutes() {
       <Stack.Screen
         name='product'
         component={Product}
+      />
+      <Stack.Screen
+        name='newProduct'
+        component={CreateProduct}
       />
     </Stack.Navigator>
   )

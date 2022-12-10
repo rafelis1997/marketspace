@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Dimensions, TouchableOpacity} from "react-native";
 import { Box, Center, FlatList, HStack, Text, useTheme, View, VStack } from "native-base";
 import { ArrowRight, Tag } from "phosphor-react-native";
@@ -34,7 +34,7 @@ export function Home() {
     navigator.navigate('product');
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const subscription = Dimensions.addEventListener(
       "change",
       ({ window }) => {
