@@ -27,6 +27,7 @@ export function PasswordInput({ errorMessage = null, isInvalid, ...rest }: Props
         placeholder="Senha"
         fontFamily="body"
         placeholderTextColor="gray.400"
+        autoCapitalize='none'
         isInvalid={invalid}
         secureTextEntry={show}
         _invalid={{

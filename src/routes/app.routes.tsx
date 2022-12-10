@@ -1,20 +1,23 @@
 import { createBottomTabNavigator, BottomTabNavigationProp  } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator, NativeStackNavigationProp  } from '@react-navigation/native-stack';
-import { useTheme } from 'native-base';
+import { Pressable, useTheme, View } from 'native-base';
 
 
 import { Home } from '@screens/Home';
 import { Platform } from 'react-native';
-import { House, Tag } from 'phosphor-react-native';
+import { House, SignOut, Tag } from 'phosphor-react-native';
 import { Product } from '@screens/Product';
 import { MyProducts } from '@screens/MyProducts';
 import { CreateProduct } from '@screens/CreateProduct';
 import { PreviewProduct } from '@screens/PreviewProduct';
+import { Button } from '@components/Button';
+import { useContext } from 'react';
+import { AuthContext } from '@contexts/AuthContext';
 
 type HomeTabNavigationProps = {
   home: undefined;
   myProducts: undefined;
-  
+  signOut: undefined;
 }
 
 type AppRoutes = {
@@ -35,6 +38,8 @@ function HomeTabNavigation() {
   const { sizes, colors } = useTheme();
 
   const iconSize = sizes[8];
+
+  const { signOut } = useContext(AuthContext);
 
   return (
     <Tab.Navigator screenOptions={{ 
@@ -70,6 +75,40 @@ function HomeTabNavigation() {
           )
         }}
       />
+      <Tab.Screen 
+        name='signOut'
+        options={{
+          tabBarButton: () => {
+            return (
+              <Pressable 
+                onPress={signOut} 
+                width={iconSize} 
+                height={iconSize}
+                justifyContent="center"
+                alignItems="center"
+                flexDirection="row"
+                h="100%"
+              >
+                <SignOut weight='bold' size={iconSize} color={colors.red[300]}/> 
+              </Pressable>
+            )
+          },
+          tabBarItemStyle: {
+            padding: 0,
+            flex: 1,
+            
+          },
+          tabBarStyle: {
+            padding: 0,
+            marginTop: -10,
+          },
+
+        }}
+      >
+        {(props) => (
+          null
+        )}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 }

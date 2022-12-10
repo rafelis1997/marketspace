@@ -19,10 +19,6 @@ export const FilterModal = forwardRef<BottomSheetModal>((props, ref) => {
     myRef.current?.dismiss();
   }, []);
 
-  useEffect(() => {
-    console.log(groupValues)
-  }, [groupValues])
-
   return (
     <BottomSheetModal
           ref={myRef}

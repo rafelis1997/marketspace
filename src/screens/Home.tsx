@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Dimensions, TouchableOpacity} from "react-native";
 import { Box, Center, FlatList, HStack, Text, useTheme, View, VStack } from "native-base";
 import { ArrowRight, Tag } from "phosphor-react-native";
@@ -10,10 +10,12 @@ import { ProductCard } from "@components/ProductCard";
 import { FilterModal } from "@components/FilterModal";
 import { useNavigation } from "@react-navigation/native";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
+import { AuthContext } from "@contexts/AuthContext";
 
 
 const items = ['1','2','3','4','5']
 const window = Dimensions.get("window");
+
 export function Home() {
   const [dimensions, setDimensions] = useState(window);
 
@@ -23,6 +25,8 @@ export function Home() {
   
   const { width } = dimensions;
   const { colors } = useTheme();
+
+  const { user } = useContext(AuthContext);
   
   const itemsListWidth = (width - 72) / 2;
 
