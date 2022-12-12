@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from 'react'
-import { Text, useTheme, View, VStack } from "native-base";
+import { Image, Text, useTheme, View, VStack } from "native-base";
 import Carousel from "react-native-reanimated-carousel";
 import { Dimensions, View as ViewNative } from 'react-native';
 import Animated, { Extrapolate, interpolate, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import { PhotoType } from '@screens/CreateProduct';
+import { api } from '@services/api';
 
 type Carrousel = {
-  data: Array<any>;
+  data: Array<PhotoType> | Array<{ path:string; }>;
 }
 
 type PaginationItemProps = {
@@ -16,7 +18,7 @@ type PaginationItemProps = {
   isRotate?: boolean;
 }
 
-export function Carrousel({data}: Carrousel) {
+export function Carrousel({ data }: Carrousel) {
   const { colors } = useTheme();
   
   const width = Dimensions.get('window').width;
@@ -45,11 +47,16 @@ export function Carrousel({data}: Carrousel) {
                     backgroundColor: colors.red[600],
                     flex: 1,
                     justifyContent: 'center',
+                    alignItems: 'center',
                 }}
             >
-                <Text style={{ textAlign: 'center', fontSize: 30, backgroundColor: colors.green[500], lineHeight: 32 }}>
-                    {index}
-                </Text>
+                <Image 
+                  w="full" 
+                  h="full" 
+                  resizeMode='cover' 
+                  source={{uri: item.uri ? item.uri : `${api.defaults.baseURL}/images/${item.path}` }} 
+                  alt="imagem do produto"
+                />
             </View>
         )}
       />
@@ -59,7 +66,7 @@ export function Carrousel({data}: Carrousel) {
           left={0}
           zIndex={10}
           width="full"
-          height={1}
+          height={data.length === 1 ? 0 : 1}
           flexDirection="row"
           justifyContent="space-between"
           alignItems="center"

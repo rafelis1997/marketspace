@@ -8,11 +8,12 @@ import { Platform } from 'react-native';
 import { House, SignOut, Tag } from 'phosphor-react-native';
 import { Product } from '@screens/Product';
 import { MyProducts } from '@screens/MyProducts';
-import { CreateProduct } from '@screens/CreateProduct';
+import { CreateProduct, PhotoType } from '@screens/CreateProduct';
 import { PreviewProduct } from '@screens/PreviewProduct';
 import { Button } from '@components/Button';
 import { useContext } from 'react';
 import { AuthContext } from '@contexts/AuthContext';
+import { ProductDTO } from '@dtos/ProductDTO';
 
 type HomeTabNavigationProps = {
   home: undefined;
@@ -24,8 +25,13 @@ type AppRoutes = {
   homeTab: undefined;
   product?: {
     isOwner: boolean;
+    productId: string; 
   };
   newProduct: undefined;
+  previewProduct: {
+    product: ProductDTO;
+    photos: Array<PhotoType>;
+  }
 }
 
 export type HomeTabNavigatorRoutesProps = BottomTabNavigationProp<HomeTabNavigationProps>;
@@ -128,6 +134,11 @@ export function AppRoutes() {
       <Stack.Screen
         name='newProduct'
         component={CreateProduct}
+      />
+
+      <Stack.Screen
+        name='previewProduct'
+        component={PreviewProduct}
       />
     </Stack.Navigator>
   )

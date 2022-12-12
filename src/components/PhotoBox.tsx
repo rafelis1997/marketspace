@@ -1,22 +1,23 @@
-import { Box, IBoxProps, Image, Pressable, useTheme } from "native-base";
+import { Box, IBoxProps, Image, IPressableProps, Pressable, useTheme } from "native-base";
 import { Plus, X } from "phosphor-react-native";
 
 import productDefault from '../assets/productImage.png'
 
-type Props = IBoxProps & {
-  hasPhoto?: boolean
+type Props = IPressableProps & {
+  hasPhoto?: boolean;
+  imgPath?: string; 
 }
 
-export function PhotoBox({ hasPhoto, ...rest }: Props) {
+export function PhotoBox({ hasPhoto, imgPath, ...rest }: Props) {
   const { colors } = useTheme();
 
   return (
     <>
     {hasPhoto ?
-      <Box width={108} height={108} rounded={2} position="relative" {...rest}>
+      <Pressable width={108} height={108} rounded={2} position="relative" {...rest}>
         <Image 
           rounded="lg"
-          source={productDefault}
+          source={{uri: imgPath}}
           defaultSource={productDefault}
           alt="Produto"
           resizeMode="cover"
@@ -37,20 +38,19 @@ export function PhotoBox({ hasPhoto, ...rest }: Props) {
         >
           <X size={12} color={colors.gray['100']}/>
         </Pressable>
-      </Box>
+      </Pressable>
     : 
-      <Box width={108} height={108} {...rest}>
-        <Pressable
-          w="full"
-          h="full"
-          bg="gray.300"
-          justifyContent="center"
-          alignItems="center"
-          rounded="lg"
-        >
-          <Plus size={24} color={colors.gray['400']}/>
-        </Pressable>
-      </Box>
+      <Pressable
+        width={108}
+        height={108}
+        bg="gray.300"
+        justifyContent="center"
+        alignItems="center"
+        rounded="lg"
+        {...rest}
+      >
+        <Plus size={24} color={colors.gray['400']}/>
+      </Pressable>
     }
     </>
   );

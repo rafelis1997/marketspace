@@ -1,8 +1,8 @@
 import { HStack, Text, useTheme } from "native-base";
 import { Bank, Barcode, CreditCard, Money, QrCode } from "phosphor-react-native";
 
-type PaymentMethodTextProps = {
-  method: "boleto" | "pix" | "money" | "credit-card" | "deposit";
+export type PaymentMethodTextProps = {
+  method: "boleto" | "pix" | "cash" | "card" | "deposit";
 }
 
 export function PaymentMethodText({ method }: PaymentMethodTextProps) {
@@ -23,14 +23,14 @@ export function PaymentMethodText({ method }: PaymentMethodTextProps) {
         </>
       )}
 
-      {method === 'money' && (
+      {method === 'cash' && (
         <>
           <Money size={18} color={colors.gray[700]}/>
           <Text ml={3} color="gray.500">Dinheiro</Text>
         </>
       )}
 
-      {method === 'credit-card' && (
+      {method === 'card' && (
         <>
           <CreditCard size={18} color={colors.gray[700]}/>
           <Text ml={3} color="gray.500">Cartão de Crédito</Text>

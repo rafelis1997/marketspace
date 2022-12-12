@@ -8,19 +8,26 @@ import defaultUserAvatar from '@assets/userPhotoDefault.png'
 import { useContext } from "react";
 import { AuthContext } from "@contexts/AuthContext";
 import { api } from "@services/api";
+import { useAuth } from "@hooks/useAuth";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
+import { useNavigation } from "@react-navigation/native";
 
 export function HomeHeader() {
   const { colors } = useTheme();
 
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
+
+  const navigator = useNavigation<AppNavigatorRoutesProps>();
+
+  function handleCreateProduct() {
+    navigator.navigate('newProduct');
+  }
 
   return (
     <HStack width="full" mb={8}>
       <HStack mr={4} width="1/2">
         <Avatar 
-          source={user.avatar ? 
-            { uri: `${api.defaults.baseURL}/images/${user.avatar}` } : 
-            defaultUserAvatar } 
+          avatarPath={user.avatar}
           size={12} 
           alt="Foto do usuário" 
           mr={3}
@@ -33,7 +40,7 @@ export function HomeHeader() {
         </VStack>
       </HStack>
 
-      <Button title="Criar anúncio" variant="black">
+      <Button title="Criar anúncio" variant="black" onPress={handleCreateProduct}>
         <Plus size={16} color={colors.gray['100']}/>
       </Button>
     </HStack>
